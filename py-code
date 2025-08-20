@@ -1,0 +1,154 @@
+"""
+Python Sets & Dictionaries Mini Project
+---------------------------------------
+Covers:
+1. Word Frequency Counter
+2. Contact Book
+3. Set Operations
+4. Mini Project: Address Book
+"""
+
+from collections import Counter
+
+# -------------------------------
+# 1. Word Frequency Counter
+# -------------------------------
+def word_frequency():
+    text = input("Enter a sentence or paragraph: ").lower()
+    words = text.split()
+    freq = Counter(words)
+    print("\nWord Frequencies:")
+    for word, count in freq.items():
+        print(f"{word}: {count}")
+
+# -------------------------------
+# 2. Contact Book
+# -------------------------------
+def contact_book():
+    contacts = {}
+    while True:
+        print("\nContacts:", contacts)
+        print("Options: [add] [search] [remove] [exit]")
+        choice = input("Choose an option: ").strip().lower()
+
+        if choice == "add":
+            name = input("Enter name: ").strip()
+            phone = input("Enter phone: ").strip()
+            email = input("Enter email: ").strip()
+            contacts[name] = {"phone": phone, "email": email}
+        elif choice == "search":
+            name = input("Enter name to search: ").strip()
+            if name in contacts:
+                print("Phone:", contacts[name]["phone"])
+                print("Email:", contacts[name]["email"])
+            else:
+                print("Contact not found.")
+        elif choice == "remove":
+            name = input("Enter name to remove: ").strip()
+            if name in contacts:
+                del contacts[name]
+                print("Contact removed.")
+            else:
+                print("Contact not found.")
+        elif choice == "exit":
+            break
+        else:
+            print("Invalid choice.")
+
+# -------------------------------
+# 3. Set Operations
+# -------------------------------
+def set_operations():
+    set1 = set(input("Enter elements for Set 1 (space-separated): ").split())
+    set2 = set(input("Enter elements for Set 2 (space-separated): ").split())
+
+    print("\nSet 1:", set1)
+    print("Set 2:", set2)
+    print("Union:", set1 | set2)
+    print("Intersection:", set1 & set2)
+    print("Difference (Set1 - Set2):", set1 - set2)
+    print("Difference (Set2 - Set1):", set2 - set1)
+
+# -------------------------------
+# 4. Mini Project: Address Book
+# -------------------------------
+def address_book():
+    book = {}
+    while True:
+        print("\nAddress Book")
+        for name, details in book.items():
+            print(f"{name} -> {details['address']}, {details['phone']}, {details['email']}")
+        print("\nOptions: [add] [update] [search] [remove] [exit]")
+        choice = input("Choose an option: ").strip().lower()
+
+        if choice == "add":
+            name = input("Enter name: ").strip()
+            address = input("Enter address: ").strip()
+            phone = input("Enter phone: ").strip()
+            email = input("Enter email: ").strip()
+            book[name] = {"address": address, "phone": phone, "email": email}
+
+        elif choice == "update":
+            name = input("Enter name to update: ").strip()
+            if name in book:
+                address = input("Enter new address: ").strip()
+                phone = input("Enter new phone: ").strip()
+                email = input("Enter new email: ").strip()
+                book[name] = {"address": address, "phone": phone, "email": email}
+                print("Contact updated.")
+            else:
+                print("Contact not found.")
+
+        elif choice == "search":
+            name = input("Enter name to search: ").strip()
+            if name in book:
+                print("Address:", book[name]["address"])
+                print("Phone:", book[name]["phone"])
+                print("Email:", book[name]["email"])
+            else:
+                print("Contact not found.")
+
+        elif choice == "remove":
+            name = input("Enter name to remove: ").strip()
+            if name in book:
+                del book[name]
+                print("Contact removed.")
+            else:
+                print("Contact not found.")
+
+        elif choice == "exit":
+            print("Final Address Book:", book)
+            break
+        else:
+            print("Invalid choice.")
+
+# -------------------------------
+# Main Menu
+# -------------------------------
+def main():
+    while True:
+        print("\n===== Sets & Dictionaries Project =====")
+        print("1. Word Frequency Counter")
+        print("2. Contact Book")
+        print("3. Set Operations")
+        print("4. Address Book (Mini Project)")
+        print("5. Exit")
+
+        choice = input("Choose an option (1-5): ").strip()
+
+        if choice == "1":
+            word_frequency()
+        elif choice == "2":
+            contact_book()
+        elif choice == "3":
+            set_operations()
+        elif choice == "4":
+            address_book()
+        elif choice == "5":
+            print("Goodbye!")
+            break
+        else:
+            print("Invalid choice. Please select 1-5.")
+
+if __name__ == "__main__":
+    main()
